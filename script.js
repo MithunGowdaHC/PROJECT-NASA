@@ -92,7 +92,6 @@ function createDOMNodes(page) {
 function updateDOM(page) {
   if (localStorage.getItem("nasaFavorites")) {
     favorites = JSON.parse(localStorage.getItem("nasaFavorites"));
-    // console.log("favorites from localStorage", favorites);
   }
   imagesContainer.textContent = "";
   createDOMNodes(page);
@@ -103,7 +102,6 @@ async function getNasaPictures() {
   try {
     const response = await fetch(apiUrl);
     resultsArray = await response.json();
-    // console.log(resultsArray);
     updateDOM("results");
   } catch (error) {}
 }
@@ -112,7 +110,6 @@ function saveFavorite(itemUrl) {
   resultsArray.forEach((item) => {
     if (item.url.includes(itemUrl) && !favorites[itemUrl]) {
       favorites[itemUrl] = item;
-      console.log(JSON.stringify(favorites));
       saveConfirmed.hidden = false;
       setTimeout(() => {
         saveConfirmed.hidden = true;
